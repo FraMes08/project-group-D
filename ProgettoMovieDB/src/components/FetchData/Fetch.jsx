@@ -8,7 +8,7 @@ function Fetch() {
 
   useEffect(() => {
     const fetchPosts = async () => {
-      const response = await fetch(import.meta.env.VITE_API_KEY)
+      const response = await fetch(`https://api.themoviedb.org/3/movie/popular?api_key=${import.meta.env.VITE_API_KEY}`)
       const data = await response.json()
       console.log("data:", data)
     }
