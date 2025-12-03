@@ -1,1 +1,1 @@
- 
+![Wireframe](./ProgettoMovieDB/public/Progetto-D-2025-12-03-1557.png)
