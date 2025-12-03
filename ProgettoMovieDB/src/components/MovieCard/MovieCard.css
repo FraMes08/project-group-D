@@ -1,0 +1,46 @@
+.movie-card-title,
+.movie-card-platform,
+.movie-card-dateyear,
+.movie-card-price {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin: 0px;
+  text-align: center;
+  color: #08ccf8;
+  text-shadow: 0 0 5px #1d54ae, 0 0 10px #08ccf8, 0 0 20px #1406d9,
+    0 0 30px #0367fdde;
+}
+
+.movie-card-image {
+  width: 100%;
+  height: auto;
+  border-radius: 50px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.movie-card {
+  background-color: #1a1a1a; /* sfondo scuro */
+  border: 2px solid #ff0000; /* bordo rosso neon */
+  border-radius: 20px;
+  padding: 20px;
+  border-color: ;
+  width: 300px;
+  color: #fff; /* testi chiari */
+  box-shadow: 0 0 10px #ff0000, 0 0 20px #ff0000; /* effetto neon rosso */
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.movie-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 20px #ff0000, 0 0 30px #ff0000, 0 0 40px #ff0000;
+}
+
+.movie-card-rating,
+.movie-card-timeplayed,
+.movie-card-difficulty {
+  font-size: 1rem;
+  margin: 5px 0;
+  text-align: center;
+  color: #08f810;
+  text-shadow: 0 0 5px #cf1313, 0 0 10px #f86408, 0 0 20px #d2ec10,
+    0 0 30px #f8cf02de;
+}
