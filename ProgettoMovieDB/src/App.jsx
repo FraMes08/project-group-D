@@ -1,12 +1,10 @@
-import "./App.css";
-// import MovieCard from "./components/MovieCard/MovieCard.jsx";
-import Fetch from "./components/FetchData/Fetch.jsx";
+import './App.css'
+import TMDBFetcher from './components/TMDBFetcher/TMDBFetcher.jsx'
 
 function App() {
   return (
     <>
-      {/* <MovieCard /> */}
-      <Fetch />
+      <TMDBFetcher />
     </>
   );
 }
