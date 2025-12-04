@@ -1,33 +1,19 @@
-import "./MovieCard.css";
-import { useState } from "react";
+import './MovieCard.css';
 
-export default function MovieCard({ movie }) {
-  const [showDetails, setShowDetails] = useState(false);
-  const handleClick = () => {
-    setShowDetails(!showDetails);
-  };
+const MovieCard = ({ movie }) => {
+  const posterUrl = `https://image.tmdb.org/t/p/w500${movie.poster_path}`;
+
   return (
-    <div className="movie-card" onClick={handleClick}>
-      <img
-        src={movie.image}
-        alt={`${movie.title} cover`}
-        className="movie-card-image"
-      />
-      <h3 className="movie-card-title">{movie.title}</h3>
-      <p className="movie-card-platform">{movie.platform}</p>
-      <p className="movie-card-dateyear">Release: {movie.dateyear}</p>
-      <p className="movie-card-price">Price: ${movie.price}</p>
-      {showDetails && (
-        <>
-          <p className="movie-card-rating">Rating: {movie.rating}/10</p>
-          <p className="movie-card-timeplayed">
-            Time Played: {movie.timeplayed} hours
-          </p>
-          <p className="movie-card-difficulty">
-            Difficulty: {movie.difficulty}
-          </p>
-        </>
-      )}
+    <div className="movie-card">
+      <img src={posterUrl} alt={movie.title} className="movie-poster" />
+      <div className="movie-info">
+        <h3>{movie.title}</h3>
+        <p className="vote">⭐ {movie.vote_average.toFixed(1)}</p>
+        <p className="release-date">{movie.release_date}</p>
+        <p className="overview">{movie.overview.substring(0, 100)}...</p>
+      </div>
     </div>
   );
-}
+};
+
+export default MovieCard;
