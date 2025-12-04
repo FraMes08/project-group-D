@@ -5,7 +5,7 @@ const MovieCard = ({ movie }) => {
 
   return (
     <div className="movie-card">
-      <img src={posterUrl} alt={movie.title} className="movie-poster" />
+      <img src={posterUrl} alt={movie.title} className="movie-poster"/>
       <div className="movie-info">
         <h3>{movie.title}</h3>
         <p className="vote">⭐ {movie.vote_average.toFixed(1)}</p>
