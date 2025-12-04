@@ -1,13 +1,10 @@
-import "./App.css";
-import FetchData from "./components/TMDBFetcher/TMDBFetcher.jsx";
-import Header from "./components/Atoms/Header/Header.jsx";
-// import Fetch from "./components/FetchData/Fetch.jsx";
+import './App.css'
+import TMDBFetcher from './components/TMDBFetcher/TMDBFetcher.jsx'
 
 function App() {
   return (
     <>
-      <Header />
-      <FetchData />
+      <TMDBFetcher />
     </>
   );
 }
