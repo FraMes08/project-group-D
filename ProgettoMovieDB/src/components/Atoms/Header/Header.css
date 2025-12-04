@@ -1,0 +1,100 @@
+.header {
+  display: flex;
+  flex-direction: column;
+  padding: 20px 20px;
+  gap: 5px;
+  position: relative;
+  background-color: #c7d2fe;
+}
+
+.header-title {
+  font-size: 1.8rem;
+  font-weight: bold;
+  position: absolute;
+  top: 10px;
+  left: 20px;
+}
+
+.buttons {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 100px;
+  align-items: center;
+  margin-top: 100px;
+}
+
+.buttons button {
+  padding: 6px 12px;
+  font-size: 0.9rem;
+  border-radius: 50px;
+  border: none;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.popular-button,
+.top-rating-button,
+.trending-button,
+.upcoming-button,
+.random-button {
+  background-color: #296eb4;
+  color: #fff;
+  height: 50px;
+  width: 100px;
+}
+
+.popular-button:hover,
+.top-rating-button:hover,
+.trending-button:hover,
+.upcoming-button:hover,
+.random-button:hover,
+.profile-button:hover {
+  background-color: #1f5390;
+}
+
+.dpbutton {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  display: flex;
+  gap: 10px;
+}
+
+.search-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.search-bar {
+  flex: 1;
+  padding: 6px 12px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+}
+
+.search-row-button {
+  padding: 6px 12px;
+  border-radius: 10px;
+  border: none;
+  background-color: #296eb4;
+  color: #fff;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.search-row-button:hover {
+  background-color: #1f5390;
+}
+
+.profile-button {
+  background-color: #296eb4;
+  color: #fff;
+  height: 35px;
+  width: 75px;
+}
