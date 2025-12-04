@@ -1,6 +1,6 @@
 import './App.css'
 import TMDBFetcher from './components/TMDBFetcher/TMDBFetcher.jsx'
-import Footer from './components/footer/Footer.jsx'
+import Footer from './components/Footer/Footer.jsx'
 
 function App() {
 
