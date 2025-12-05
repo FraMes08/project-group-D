@@ -1,6 +1,7 @@
 import { NavLink, useNavigate } from "react-router-dom";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useContext } from "react";
 import logodefinitivo from "../../assets/logodefinitivo.png";
+import { ThemeContext } from "../../context/ThemeContext";
 import "./Header.css";
 
 export default function Header() {
@@ -9,6 +10,7 @@ export default function Header() {
   const debounceRef = useRef(null);
   const firstRender = useRef(true);
   const DEBOUNCE_MS = 500;
+  const { theme, toggleTheme } = useContext(ThemeContext);
 
   // Funzione per resettare lo stato 'query'
   const resetQuery = () => {
@@ -59,6 +61,7 @@ export default function Header() {
 
   return (
     <header className="header">
+      <h1>The Movie</h1>
       <div className="buttons">
         <div className="logodefinitivo">
           <img src={logodefinitivo} alt="logo" />
@@ -114,10 +117,11 @@ export default function Header() {
         </NavLink>
         <button
           className="darkmode-button"
-          aria-pressed="false"
+          aria-pressed={theme === "dark"}
           title="Toggle tema"
+          onClick={toggleTheme}
         >
-          🌙
+          {theme === "dark" ? "☀️" : "🌙"}
         </button>
       </div>
 

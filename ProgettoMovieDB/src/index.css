@@ -1,0 +1,49 @@
+:root {
+  /* Light Mode Colors */
+  --bg-primary: #ffffff;
+  --bg-secondary: #f8f9fa;
+  --text-primary: #0b2540;
+  --text-secondary: #666;
+  --color-primary: #296eb4;
+  --color-secondary: #c4eafb;
+  --color-cream: #fff8e6;
+  --color-lilac: #c7d2fe;
+  --card-bg: #ffffff;
+  --card-shadow: rgba(0, 0, 0, 0.1);
+}
+
+[data-theme="dark"] {
+  /* Dark Mode Colors */
+  --bg-primary: #1e1e2f;
+  --bg-secondary: #2a2a3f;
+  --text-primary: #e0e0e0;
+  --text-secondary: #b0b0b0;
+  --color-primary: #342ea0;
+  --color-secondary: #a3b8ff;
+  --color-cream: #2a2a3f;
+  --color-lilac: #4a4a6a;
+  --card-bg: #2a2a3f;
+  --card-shadow: rgba(0, 0, 0, 0.4);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+#root {
+  min-height: 100vh;
+  background-color: var(--bg-primary);
+}
