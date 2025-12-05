@@ -36,7 +36,7 @@
 .buttons button,
 .buttons a {
   padding: 6px 12px;
-  font-size: 0.9rem;
+  font-size: 20px;
   border-radius: 50px;
   border: none;
   cursor: pointer;
@@ -47,6 +47,7 @@
   justify-content: center;
   text-decoration: none;
   color: inherit;
+  color: black;
 }
 
 .popular-button,
@@ -54,13 +55,14 @@
 .trending-button,
 .upcoming-button,
 .random-button {
-  background-color: #296eb4;
+  background-color: #296fb4d8;
   color: #fff;
   height: 50px;
   width: 100px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.4);
 }
 
 .popular-button:hover,
@@ -70,6 +72,7 @@
 .random-button:hover,
 .profile-button:hover {
   background-color: #1f5390;
+  transform: translateY(3px);
 }
 
 .dpbutton {
@@ -78,6 +81,7 @@
   right: 20px;
   display: flex;
   gap: 10px;
+  transform: translateY(3px);
 }
 
 .search-row {
@@ -103,7 +107,7 @@
   background-color: #296eb4;
   color: #fff;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all 0.3s ease;
 }
 
 .search-row-button:hover {
@@ -143,4 +147,5 @@
 
 .darkmode-button:hover {
   background: rgba(0, 0, 0, 0.08);
+  transform: translateY(3px);
 }
