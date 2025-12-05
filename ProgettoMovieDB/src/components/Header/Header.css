@@ -24,7 +24,8 @@
   margin-top: 100px;
 }
 
-.buttons button {
+.buttons button,
+.buttons a {
   padding: 6px 12px;
   font-size: 0.9rem;
   border-radius: 50px;
@@ -32,6 +33,11 @@
   cursor: pointer;
   font-weight: 500;
   transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  color: inherit;
 }
 
 .popular-button,
@@ -43,6 +49,9 @@
   color: #fff;
   height: 50px;
   width: 100px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .popular-button:hover,
@@ -95,6 +104,32 @@
 .profile-button {
   background-color: #296eb4;
   color: #fff;
-  height: 35px;
-  width: 75px;
+  height: 40px;
+  width: 40px;
+  padding: 0;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
 }
+
+.profile-avatar {
+  font-size: 18px;
+  line-height: 1;
+}
+
+.darkmode-button {
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0,0,0,0.05);
+  border: none;
+  cursor: pointer;
+}
+
+.darkmode-button:hover { background: rgba(0,0,0,0.08); }
