@@ -16,8 +16,6 @@ const MovieModal = ({ movie, onClose }) => {
     }
   });
 
-  
-
   if (!movie) return null;
 
   const toggleFavorite = (e) => {
@@ -45,6 +43,11 @@ const MovieModal = ({ movie, onClose }) => {
   const handleOverlayClick = (e) => {
     if (e.target.classList.contains('movie-modal-overlay')) onClose();
   };
+
+  // Determina la sorgente dei generi
+  const genresSource = movie.genres && movie.genres.length > 0
+    ? movie.genres // Array di oggetti { id, name } - Usato per i dettagli completi (e Random)
+    : movie.genre_ids && movie.genre_ids.map(id => ({ id, name: genreMap[id] || `Genre ${id}` })); // Array di ID - Usato per le liste
 
   return (
     <div className="movie-modal-overlay" onClick={handleOverlayClick}>
@@ -82,10 +85,11 @@ const MovieModal = ({ movie, onClose }) => {
             </div>
 
             <div className="modal-tags">
-              {movie.genre_ids && movie.genre_ids.length > 0 && (
+              {/* Utilizza la sorgente dei generi determinata sopra */}
+              {genresSource && genresSource.length > 0 && (
                 <div className="tags">
-                  {movie.genre_ids.slice(0,4).map((g) => (
-                    <span key={g} className="tag">{genreMap[g] || `Genre ${g}`}</span>
+                  {genresSource.slice(0, 4).map((genre) => (
+                    <span key={genre.id} className="tag">{genre.name}</span>
                   ))}
                 </div>
               )}
@@ -93,8 +97,8 @@ const MovieModal = ({ movie, onClose }) => {
 
             <p className="modal-overview">{movie.overview}</p>
             <div className="modal-cast">
-                Cast: {cast.length > 0 ? cast.map((actor) => actor.name).join(', ') : '—'}
-              </div>
+              Cast: {cast.length > 0 ? cast.map((actor) => actor.name).join(', ') : '—'}
+            </div>
             <div className="modal-footer">
               <div className="modal-vote">⭐ {movie.vote_average?.toFixed(1)}</div>
               <div className="modal-release">{movie.release_date}</div>

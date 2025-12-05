@@ -8,7 +8,7 @@ const TMDBFetcher = ({ fetchPath, onMoviesLoaded }) => {
   const TMDB_API_KEY = import.meta.env.VITE_API_KEY;
 
   useEffect(() => {
-    // Esci se non c'è un path valido o una chiave API
+    
     if (!TMDB_API_KEY || !fetchPath) {
       if (!TMDB_API_KEY) {
          setError("Chiave API TMDB non configurata nel file .env!");
