@@ -1,9 +1,10 @@
-import { NavLink, useNavigate } from 'react-router-dom';
-import { useState, useEffect, useRef } from 'react';
+import { NavLink, useNavigate } from "react-router-dom";
+import { useState, useEffect, useRef } from "react";
+import logodefinitivo from "../../assets/logodefinitivo.png";
 import "./Header.css";
 
 export default function Header() {
-  const [query, setQuery] = useState('');
+  const [query, setQuery] = useState("");
   const navigate = useNavigate();
   const debounceRef = useRef(null);
   const firstRender = useRef(true);
@@ -16,7 +17,7 @@ export default function Header() {
       clearTimeout(debounceRef.current);
       debounceRef.current = null;
     }
-    setQuery('');
+    setQuery("");
   };
 
   const submitSearch = (q) => {
@@ -59,19 +60,65 @@ export default function Header() {
   return (
     <header className="header">
       <div className="buttons">
-        <h1 className="header-title">The Movie</h1>
+        <div className="logodefinitivo">
+          <img src={logodefinitivo} alt="logo" />
+        </div>
 
-        <NavLink to="/popular" className={({isActive}) => isActive ? 'popular-button active' : 'popular-button'} onClick={resetQuery}>Popular</NavLink>
-        <NavLink to="/top" className={({isActive}) => isActive ? 'top-rating-button active' : 'top-rating-button'} onClick={resetQuery}>Top-rating</NavLink>
-        <NavLink to="/upcoming" className={({isActive}) => isActive ? 'upcoming-button active' : 'upcoming-button'} onClick={resetQuery}>Upcoming</NavLink>
-        <NavLink to="/random" className={({isActive}) => isActive ? 'random-button active' : 'random-button'} onClick={resetQuery}>Random</NavLink>
+        <NavLink
+          to="/popular"
+          className={({ isActive }) =>
+            isActive ? "popular-button active" : "popular-button"
+          }
+          onClick={resetQuery}
+        >
+          Popular
+        </NavLink>
+        <NavLink
+          to="/top"
+          className={({ isActive }) =>
+            isActive ? "top-rating-button active" : "top-rating-button"
+          }
+          onClick={resetQuery}
+        >
+          Top-rating
+        </NavLink>
+        <NavLink
+          to="/upcoming"
+          className={({ isActive }) =>
+            isActive ? "upcoming-button active" : "upcoming-button"
+          }
+          onClick={resetQuery}
+        >
+          Upcoming
+        </NavLink>
+        <NavLink
+          to="/random"
+          className={({ isActive }) =>
+            isActive ? "random-button active" : "random-button"
+          }
+          onClick={resetQuery}
+        >
+          Random
+        </NavLink>
       </div>
 
       <div className="dpbutton">
-        <NavLink to="/favorites" className="profile-button" aria-label="Profilo" title="Profilo" onClick={resetQuery}>
+        <NavLink
+          to="/favorites"
+          className="profile-button"
+          aria-label="Profilo"
+          title="Profilo"
+          onClick={resetQuery}
+        >
           <span className="profile-avatar">👤</span>
         </NavLink>
-        <button className="darkmode-button" aria-pressed="false" title="Toggle tema">🌙</button>
+        <button
+          className="darkmode-button"
+          aria-pressed="false"
+          title="Toggle tema"
+        >
+          🌙
+        </button>
       </div>
 
       <div className="search-row">
@@ -81,9 +128,13 @@ export default function Header() {
           placeholder="Search..."
           value={query}
           onChange={(e) => setQuery(e.target.value)}
-          onKeyDown={(e) => { if (e.key === 'Enter') submitSearch(e.target.value); }}
+          onKeyDown={(e) => {
+            if (e.key === "Enter") submitSearch(e.target.value);
+          }}
         />
-        <button className="search-row-button" onClick={() => submitSearch()}>Search</button>
+        <button className="search-row-button" onClick={() => submitSearch()}>
+          Search
+        </button>
       </div>
     </header>
   );
