@@ -9,6 +9,16 @@ export default function Header() {
   const firstRender = useRef(true);
   const DEBOUNCE_MS = 500;
 
+  // Funzione per resettare lo stato 'query'
+  const resetQuery = () => {
+    // Pulisce anche il debounce, nel caso in cui l'utente stia digitando mentre clicca un link
+    if (debounceRef.current) {
+      clearTimeout(debounceRef.current);
+      debounceRef.current = null;
+    }
+    setQuery('');
+  };
+
   const submitSearch = (q) => {
     // clear any pending debounced navigation and navigate immediately
     if (debounceRef.current) {
@@ -51,15 +61,15 @@ export default function Header() {
       <div className="buttons">
         <h1 className="header-title">The Movie</h1>
 
-        <NavLink to="/" className={({isActive}) => isActive ? 'popular-button active' : 'popular-button'}>Popular</NavLink>
-        <NavLink to="/top" className={({isActive}) => isActive ? 'top-rating-button active' : 'top-rating-button'}>Top-rating</NavLink>
-        <NavLink to="/trending" className={({isActive}) => isActive ? 'trending-button active' : 'trending-button'}>Trending</NavLink>
-        <NavLink to="/upcoming" className={({isActive}) => isActive ? 'upcoming-button active' : 'upcoming-button'}>Upcoming</NavLink>
-        <NavLink to="/random" className={({isActive}) => isActive ? 'random-button active' : 'random-button'}>Random</NavLink>
+        <NavLink to="/" className={({isActive}) => isActive ? 'popular-button active' : 'popular-button'} onClick={resetQuery}>Popular</NavLink>
+        <NavLink to="/top" className={({isActive}) => isActive ? 'top-rating-button active' : 'top-rating-button'} onClick={resetQuery}>Top-rating</NavLink>
+        <NavLink to="/trending" className={({isActive}) => isActive ? 'trending-button active' : 'trending-button'} onClick={resetQuery}>Trending</NavLink>
+        <NavLink to="/upcoming" className={({isActive}) => isActive ? 'upcoming-button active' : 'upcoming-button'} onClick={resetQuery}>Upcoming</NavLink>
+        <NavLink to="/random" className={({isActive}) => isActive ? 'random-button active' : 'random-button'} onClick={resetQuery}>Random</NavLink>
       </div>
 
       <div className="dpbutton">
-        <NavLink to="/favorites" className="profile-button" aria-label="Profilo" title="Profilo">
+        <NavLink to="/favorites" className="profile-button" aria-label="Profilo" title="Profilo" onClick={resetQuery}>
           <span className="profile-avatar">👤</span>
         </NavLink>
         <button className="darkmode-button" aria-pressed="false" title="Toggle tema">🌙</button>
