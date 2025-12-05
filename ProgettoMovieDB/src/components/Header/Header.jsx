@@ -61,9 +61,8 @@ export default function Header() {
       <div className="buttons">
         <h1 className="header-title">The Movie</h1>
 
-        <NavLink to="/" className={({isActive}) => isActive ? 'popular-button active' : 'popular-button'} onClick={resetQuery}>Popular</NavLink>
+        <NavLink to="/popular" className={({isActive}) => isActive ? 'popular-button active' : 'popular-button'} onClick={resetQuery}>Popular</NavLink>
         <NavLink to="/top" className={({isActive}) => isActive ? 'top-rating-button active' : 'top-rating-button'} onClick={resetQuery}>Top-rating</NavLink>
-        <NavLink to="/trending" className={({isActive}) => isActive ? 'trending-button active' : 'trending-button'} onClick={resetQuery}>Trending</NavLink>
         <NavLink to="/upcoming" className={({isActive}) => isActive ? 'upcoming-button active' : 'upcoming-button'} onClick={resetQuery}>Upcoming</NavLink>
         <NavLink to="/random" className={({isActive}) => isActive ? 'random-button active' : 'random-button'} onClick={resetQuery}>Random</NavLink>
       </div>
