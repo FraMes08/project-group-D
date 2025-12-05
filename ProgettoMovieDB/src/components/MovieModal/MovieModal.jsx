@@ -29,7 +29,8 @@ const MovieModal = ({ movie, onClose }) => {
         localStorage.setItem('favorites', JSON.stringify(updated));
         setIsFavorite(false);
       } else {
-        const toAdd = { id: movie.id, title: movie.title, poster_path: movie.poster_path };
+        // save the entire movie object so MovieCard can render full details on favorites page
+        const toAdd = { ...movie };
         const updated = [...favs, toAdd];
         localStorage.setItem('favorites', JSON.stringify(updated));
         setIsFavorite(true);
