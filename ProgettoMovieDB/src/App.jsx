@@ -1,15 +1,13 @@
-import './App.css'
-import TMDBFetcher from './components/TMDBFetcher/TMDBFetcher.jsx'
-import Footer from './components/footer/Footer.jsx'
+import './App.css';
+import AppRouter from './router/AppRouter';
 
 function App() {
-
   return (
     <>
-      <TMDBFetcher />
-      <Footer />
+    
+      <AppRouter/>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
