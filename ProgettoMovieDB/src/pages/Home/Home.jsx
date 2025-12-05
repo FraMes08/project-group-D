@@ -1,27 +1,39 @@
-import { useState } from 'react';
-import TMDBFetcher from '../../components/TMDBFetcher/TMDBFetcher';
-import MovieList from '../../components/MovieList/MovieList';
+// src/pages/Home/Home.jsx
+
+import Carousel from '../../components/Carousel/Carousel';
 import './Home.css';
 
 const Home = () => {
-  const [movies, setMovies] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
-
-  const handleMoviesLoaded = (fetchedMovies) => {
-    setMovies(fetchedMovies);
-    setIsLoading(false);
-  };
-
   return (
-    <div className="home">
-      {/* Ora passiamo l'endpoint specifico per i Popolari */}
-      <TMDBFetcher 
-        fetchPath="movie/popular" 
-        onMoviesLoaded={handleMoviesLoaded} 
+    <div className="home-page">
+      <h1>Benvenuto in The Movie App</h1>
+      
+      {/* Carousel 1: Popolari */}
+      <Carousel 
+        title="🎬 Film Più Popolari"
+        fetchPath="movie/popular" // Endpoint popolare
       />
-      <MovieList movies={movies} isLoading={isLoading} />
+
+      {/* Carousel 2: I Più Votati (Top Rated) */}
+        <Carousel 
+          title="⭐ I Più Votati di Sempre"
+          fetchPath="movie/top_rated"
+        />
+
+
+        {/* Carousel 3: Prossime Uscite (Upcoming) */}
+        <Carousel 
+          title="🗓️ Prossime Uscite"
+          fetchPath="movie/upcoming"
+        />
+      
+      
     </div>
   );
 };
 
 export default Home;
+
+
+
+

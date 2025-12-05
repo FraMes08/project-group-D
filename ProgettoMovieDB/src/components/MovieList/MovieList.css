@@ -5,6 +5,7 @@
   padding: 30px;
   max-width: 80%;
   margin: 0 auto;
+  background-color: var(--bg-primary);
 }
 
 @media (max-width: 768px) {
@@ -12,4 +13,33 @@
     grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
     gap: 15px;
   }
+}
+
+
+.movie-grid-list {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(250px, 1fr)); 
+    gap: 20px;
+    padding: 20px;
+}
+
+.movie-carousel-list {
+    display: flex; 
+    overflow-x: scroll;
+    overflow-y: hidden;
+    padding: 0 20px 20px 20px;
+    white-space: nowrap; 
+    scroll-behavior: smooth;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+.movie-carousel-list::-webkit-scrollbar {
+    display: none;
+}
+
+
+.movie-carousel-list .movie-card {
+    flex-basis: calc(25% - 15px); 
+    flex-shrink: 0; 
+    margin-right: 15px; 
 }
