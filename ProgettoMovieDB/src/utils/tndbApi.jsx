@@ -71,4 +71,41 @@ export const searchMovies = (query, page = 1) => {
   return fetchFromTmdb('/search/movie', { query, page });
 };
 
-// ... altre funzioni (es. getUpcoming)
+export const getUpcomingMovies = (page = 1) => {
+  return fetchFromTmdb('/movie/upcoming', { page });
+};
+
+
+export const getRandomMovie = async () => {
+    // 1. Definisce un massimo di pagine da cui pescare (es. le prime 50 di Popolari/Scoperta)
+    const MAX_PAGES = 50; 
+    // 2. Sceglie una pagina casuale
+    const randomPage = Math.floor(Math.random() * MAX_PAGES) + 1;
+
+    try {
+        // Usa l'endpoint discover per ordinare per popolarità e scegliere una pagina casuale
+        const discoverData = await fetchFromTmdb('/discover/movie', { 
+            page: randomPage,
+            sort_by: 'popularity.desc' 
+        });
+
+        const results = discoverData.results;
+        
+        if (!results || results.length === 0) {
+            throw new Error('Nessun risultato trovato nella pagina casuale.');
+        }
+
+        // 3. Sceglie un film a caso dall'elenco dei risultati di quella pagina
+        const randomMovieFromPage = results[Math.floor(Math.random() * results.length)];
+
+        // 4. Recupera i dettagli completi del film (necessari per la MovieModal)
+        // Assumo che tu abbia una funzione getMovieDetails che includa crediti/video
+        const fullDetails = await getMovieDetails(randomMovieFromPage.id);
+        
+        return fullDetails;
+
+    } catch (error) {
+        console.error("Errore nel recupero del film casuale:", error);
+        throw error;
+    }
+};
