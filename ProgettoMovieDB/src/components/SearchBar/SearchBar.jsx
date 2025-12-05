@@ -1,17 +1,40 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useSearchParams, useNavigate } from 'react-router-dom';
 
-function SearchBar({ navigateTo }) {
-  const [query, setQuery] = useState('');
+function SearchBar() {
+  // 1. Usiamo useSearchParams per leggere e scrivere la query nell'URL
+  const [searchParams, setSearchParams] = useSearchParams();
+  const navigate = useNavigate();
+  
+  // Legge la query corrente dall'URL o usa una stringa vuota
+  const urlQuery = searchParams.get('query') || '';
 
+  // 2. Usiamo uno stato locale per l'input, inizializzato con la query dell'URL
+  const [inputValue, setInputValue] = useState(urlQuery);
+
+  // Sincronizza lo stato locale (inputValue) con l'URL (urlQuery)
+  useEffect(() => {
+      setInputValue(urlQuery);
+  }, [urlQuery]);
+
+  // Gestisce la sottomissione del form
   const handleSearch = (e) => {
     e.preventDefault();
-    if (query.trim()) {
-      // Quando l'utente cerca, navighiamo alla pagina 'search'.
-      // Idealmente, passeresti la query a 'App.jsx' per aggiornare lo stato di ricerca.
-      // Per semplicità, in questa versione fittizia:
-      navigateTo('search', query); 
-      setQuery(''); // Pulisci il campo dopo la ricerca
+    const trimmedQuery = inputValue.trim();
+
+    if (trimmedQuery) {
+      // 3. Scrivi la nuova query nell'URL e naviga alla pagina /search
+      setSearchParams({ query: trimmedQuery });
+      navigate(`/search?query=${encodeURIComponent(trimmedQuery)}`);
+    } else {
+      // 4. Se la query è vuota, pulisci i searchParams e naviga alla homepage
+      setSearchParams({}); 
+      navigate(`/`);
     }
+    
+    // NOTA: Non puliamo più inputValue qui. Lo lasciamo visualizzato 
+    // nell'input in modo che l'utente veda ancora il termine cercato se resta sulla 
+    // pagina di ricerca. La pulizia DEVE avvenire nella navigazione.
   };
 
   return (
@@ -19,8 +42,9 @@ function SearchBar({ navigateTo }) {
       <input
         type="text"
         placeholder="Cerca un film..."
-        value={query}
-        onChange={(e) => setQuery(e.target.value)}
+        value={inputValue}
+        // Aggiorna lo stato locale quando l'utente digita
+        onChange={(e) => setInputValue(e.target.value)}
       />
       <button type="submit">Cerca</button>
     </form>
