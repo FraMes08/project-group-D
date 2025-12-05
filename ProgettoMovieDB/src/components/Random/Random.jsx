@@ -2,8 +2,9 @@
 
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import MovieModal from '../../components/MovieModal/MovieModal'; // Assicurati del percorso corretto
-import { getRandomMovie } from '../../utils/tndbApi'; // Assicurati del percorso corretto
+import MovieModal from '../../components/MovieModal/MovieModal'; 
+// !!! VERIFICA IL NOME DEL FILE QUI (TMDB è l'originale) !!!
+import { getRandomMovie } from '../../utils/tndbApi'; 
 
 const Random = () => {
   const [randomMovie, setRandomMovie] = useState(null);
@@ -24,8 +25,14 @@ const Random = () => {
       setError(null);
       try {
         const movie = await getRandomMovie();
+        // Controllo aggiuntivo per assicurarsi che i dettagli completi siano validi
+        if (!movie || !movie.id) {
+            throw new Error('I dettagli del film casuale non sono validi.');
+        }
         setRandomMovie(movie);
       } catch (err) {
+        // Log in console per debug
+        console.error("Errore nel fetching random:", err); 
         setError(err.message);
         // Naviga via in caso di errore
         navigate('/'); 
@@ -51,11 +58,11 @@ const Random = () => {
       {randomMovie && (
         <MovieModal 
           movie={randomMovie} 
-          onClose={handleCloseModal} // Usa la funzione che naviga via
+          onClose={handleCloseModal}
         />
       )}
-      {/* Opzionale: un placeholder visibile finché il modal non appare/non si chiude */}
-      <div style={{ height: '100vh', width: '100vw', background: 'rgba(0,0,0,0.5)' }}></div>
+      {/* Overlay per bloccare l'interazione con lo sfondo */}
+      <div style={{ position: 'fixed', top: 0, left: 0, height: '100vh', width: '100vw', background: 'rgba(0,0,0,0.5)' }}></div>
     </>
   );
 };
