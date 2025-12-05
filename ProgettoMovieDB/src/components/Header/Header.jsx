@@ -1,3 +1,5 @@
+// src/components/Header/Header.jsx (Aggiornato)
+
 import { NavLink, useNavigate } from "react-router-dom";
 import { useState, useEffect, useRef, useContext } from "react";
 import logodefinitivo from "../../assets/logodefinitivo.png";
@@ -61,11 +63,16 @@ export default function Header() {
 
   return (
     <header className="header">
-      <h1>The Movie</h1>
+      
+        <h1>The Movie</h1>
+      
+      
       <div className="buttons">
-        <div className="logodefinitivo">
+        {/* ⭐ MODIFICA QUI: Avvolgiamo il logo con NavLink */}
+        <NavLink to="/" onClick={resetQuery} className="logodefinitivo">
           <img src={logodefinitivo} alt="logo" />
-        </div>
+        </NavLink>
+        {/* ⭐ FINE MODIFICA */}
 
         <NavLink
           to="/popular"
