@@ -59,6 +59,7 @@ export default function Header() {
 
   return (
     <header className="header">
+      <h1>The Movie</h1>
       <div className="buttons">
         <div className="logodefinitivo">
           <img src={logodefinitivo} alt="logo" />

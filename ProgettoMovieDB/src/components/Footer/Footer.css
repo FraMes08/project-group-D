@@ -158,3 +158,9 @@
     flex-wrap: wrap;
   }
 }
+
+.logodefinitivo2 img {
+  position: relative;
+  height: 100px;
+  width: 150px;
+}
