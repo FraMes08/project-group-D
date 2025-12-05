@@ -1,6 +1,9 @@
+// src/components/TMDBFetcher/TMDBFetcher.jsx
+
 import { useState, useEffect } from 'react';
 
-const TMDBFetcher = ({ fetchPath, onMoviesLoaded }) => { 
+// Accetta la nuova prop currentPage
+const TMDBFetcher = ({ fetchPath, onMoviesLoaded, currentPage = 1 }) => { 
   
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -8,13 +11,13 @@ const TMDBFetcher = ({ fetchPath, onMoviesLoaded }) => {
   const TMDB_API_KEY = import.meta.env.VITE_API_KEY;
 
   useEffect(() => {
-    
+    // ... (controlli iniziali invariati)
     if (!TMDB_API_KEY || !fetchPath) {
-      if (!TMDB_API_KEY) {
-         setError("Chiave API TMDB non configurata nel file .env!");
-      }
-      setIsLoading(false);
-      return;
+        if (!TMDB_API_KEY) {
+            setError("Chiave API TMDB non configurata nel file .env!");
+        }
+        setIsLoading(false);
+        return;
     }
 
     const controller = new AbortController();
@@ -24,9 +27,8 @@ const TMDBFetcher = ({ fetchPath, onMoviesLoaded }) => {
       setIsLoading(true);
       setError(null);
       try {
-        // Usa fetchPath nella URL
-        // Aggiungo anche language e page se non sono già gestiti altrove
-        const url = `https://api.themoviedb.org/3/${fetchPath}?api_key=${TMDB_API_KEY}&language=it-IT&page=1`;
+        // !!! MODIFICA CHIAVE: usa la prop currentPage nella URL !!!
+        const url = `https://api.themoviedb.org/3/${fetchPath}?api_key=${TMDB_API_KEY}&language=it-IT&page=${currentPage}`;
         
         const response = await fetch(url, { signal });
 
@@ -36,14 +38,17 @@ const TMDBFetcher = ({ fetchPath, onMoviesLoaded }) => {
 
         const data = await response.json();
         
-        // Passa i dati al componente padre tramite la prop onMoviesLoaded
-        onMoviesLoaded(data.results || []); 
+        // !!! MODIFICA CHIAVE: Passa i metadati della paginazione (total_pages) al padre
+        onMoviesLoaded(
+          data.results || [],
+          data.total_pages || 1 // Nuova informazione passata
+        ); 
         
         setError(null);
       } catch (err) {
         if (err.name !== 'AbortError') {
           setError(err.message);
-          onMoviesLoaded([]); // Assicurati che il parent riceva un array vuoto in caso di errore
+          onMoviesLoaded([]);
         }
       } finally {
         setIsLoading(false);
@@ -52,21 +57,18 @@ const TMDBFetcher = ({ fetchPath, onMoviesLoaded }) => {
 
     fetchMovies();
     
-    // Cleanup function per annullare la richiesta se il componente viene smontato
+    // Aggiungi currentPage come dipendenza
     return () => controller.abort();
-  }, [TMDB_API_KEY, fetchPath, onMoviesLoaded]); // Aggiungi le dipendenze
+  }, [TMDB_API_KEY, fetchPath, onMoviesLoaded, currentPage]); 
 
-  // Il fetcher non renderizza la lista, ma solo il messaggio di errore/caricamento.
   if (error) {
     return <div style={{color: 'red'}}>❌ Errore API: {error}</div>;
   }
   
   if (isLoading) {
-    return <div></div>;
+    return <div style={{textAlign: 'center', padding: '10px'}}>🔄 Fetching dati...</div>;
   }
-
-  // Ritorna null o un indicatore di caricamento leggero, 
-  // ma non MovieList, perché MovieList viene renderizzato dal componente padre.
+  
   return null; 
 };
 

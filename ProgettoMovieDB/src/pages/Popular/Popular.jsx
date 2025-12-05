@@ -1,33 +1,50 @@
 // src/pages/Popular/Popular.jsx
 
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
 import TMDBFetcher from '../../components/TMDBFetcher/TMDBFetcher';
 import MovieList from '../../components/MovieList/MovieList';
-import './Popular.css'; // Crea un file CSS se necessario
+import PaginationControls from '../../components/PaginationControls/PaginationControls'; 
+import './Popular.css';
 
 const Popular = () => {
   const [movies, setMovies] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
 
-  const handleMoviesLoaded = (fetchedMovies) => {
+  // Aggiorna gli stati movies e totalPages
+  const handleMoviesLoaded = useCallback((fetchedMovies, totalP) => {
     setMovies(fetchedMovies);
+    setTotalPages(totalP);
     setIsLoading(false);
+  }, []); 
+
+  // Handler per cambiare pagina
+  const handlePageChange = (newPage) => {
+    setCurrentPage(newPage);
+    setIsLoading(true); 
   };
 
   return (
     <div className="popular-page">
-      <h2>Film Più Popolari</h2>
+      <h2>⭐ Film Più Popolari</h2>
       
-      {/* Utilizza l'endpoint specifico per i film Popolari. 
-        Nota: Se la tua pagina Home è identica, potresti semplicemente rinominare Home in Popular, 
-        o reindirizzare /popular a /.
-      */}
       <TMDBFetcher 
         fetchPath="movie/popular" 
-        onMoviesLoaded={handleMoviesLoaded} 
+        onMoviesLoaded={handleMoviesLoaded}
+        currentPage={currentPage} // Passa la pagina corrente
       />
       
       <MovieList movies={movies} isLoading={isLoading} />
+
+      {/* Mostra i controlli di paginazione */}
+      {!isLoading && movies.length > 0 && (
+        <PaginationControls 
+          currentPage={currentPage}
+          totalPages={totalPages}
+          onPageChange={handlePageChange}
+        />
+      )}
     </div>
   );
 };
