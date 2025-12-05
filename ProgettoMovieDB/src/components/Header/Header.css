@@ -1,10 +1,19 @@
 .header {
+  --cream: #fff8e6;
+  --light-blue: #c4eafb;
+  --blue: #296eb4;
+  --lilac: #c7d2fe;
+  --text: #0b2540;
+
   display: flex;
   flex-direction: column;
   padding: 20px 20px;
   gap: 5px;
   position: relative;
-  background-color: #c7d2fe;
+
+  background: linear-gradient(180deg, var(--light-blue) 0%, var(--cream) 100%);
+
+  color: var(--text);
 }
 
 .header-title {
@@ -27,7 +36,7 @@
 .buttons button,
 .buttons a {
   padding: 6px 12px;
-  font-size: 0.9rem;
+  font-size: 20px;
   border-radius: 50px;
   border: none;
   cursor: pointer;
@@ -38,6 +47,7 @@
   justify-content: center;
   text-decoration: none;
   color: inherit;
+  color: black;
 }
 
 .popular-button,
@@ -45,13 +55,14 @@
 .trending-button,
 .upcoming-button,
 .random-button {
-  background-color: #296eb4;
+  background-color: #296fb4d8;
   color: #fff;
   height: 50px;
   width: 100px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.4);
 }
 
 .popular-button:hover,
@@ -61,6 +72,7 @@
 .random-button:hover,
 .profile-button:hover {
   background-color: #1f5390;
+  transform: translateY(3px);
 }
 
 .dpbutton {
@@ -69,6 +81,7 @@
   right: 20px;
   display: flex;
   gap: 10px;
+  transform: translateY(3px);
 }
 
 .search-row {
@@ -94,7 +107,7 @@
   background-color: #296eb4;
   color: #fff;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all 0.3s ease;
 }
 
 .search-row-button:hover {
@@ -112,7 +125,7 @@
   align-items: center;
   justify-content: center;
   text-decoration: none;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
 }
 
 .profile-avatar {
@@ -127,9 +140,12 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  background: rgba(0,0,0,0.05);
+  background: rgba(0, 0, 0, 0.05);
   border: none;
   cursor: pointer;
 }
 
-.darkmode-button:hover { background: rgba(0,0,0,0.08); }
+.darkmode-button:hover {
+  background: rgba(0, 0, 0, 0.08);
+  transform: translateY(3px);
+}
