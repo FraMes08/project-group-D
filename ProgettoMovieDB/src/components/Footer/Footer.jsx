@@ -1,10 +1,13 @@
 import './Footer.css';
+import logodefinitivo from "../../assets/logodefinitivo.png";
 
 export default function Footer() {
   return (
     <footer className="footer">
       <div className="footer-content">
-        <h2 className="footer-title">The Movie</h2>
+          <div className="logodefinitivo2">
+                  <img src={logodefinitivo} alt="logo" />
+                </div>
         <p className="footer-text">
           Il tuo portale per scoprire nuovi film e serie.
         </p>
