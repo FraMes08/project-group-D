@@ -1,19 +1,16 @@
 .header {
-  --cream: #fff8e6;
-  --light-blue: #c4eafb;
-  --blue: #296eb4;
-  --lilac: #c7d2fe;
-  --text: #0b2540;
-
   display: flex;
   flex-direction: column;
   padding: 10px 20px;
   gap: 5px;
   position: relative;
-
-  background: linear-gradient(180deg, var(--light-blue) 0%, var(--cream) 100%);
-
-  color: var(--text);
+  background: linear-gradient(
+    180deg,
+    var(--color-secondary) 0%,
+    var(--color-cream) 100%
+  );
+  color: var(--text-primary);
+  transition: background 0.3s ease, color 0.3s ease;
 }
 
 h1 {
@@ -22,6 +19,7 @@ h1 {
   text-align: center;
   margin-top: 10px;
   padding: 0;
+  color: var(--text-primary);
 }
 
 .buttons {
@@ -30,7 +28,7 @@ h1 {
   justify-content: center;
   gap: 100px;
   margin-left: 30px;
-  margin-right: 140px;
+  margin-right: 150px;
 }
 
 .buttons button,
@@ -46,8 +44,7 @@ h1 {
   align-items: center;
   justify-content: center;
   text-decoration: none;
-  color: inherit;
-  color: black;
+  color: #fff;
 }
 
 .popular-button,
@@ -55,21 +52,26 @@ h1 {
 .trending-button,
 .upcoming-button,
 .random-button {
-  background-color: #296fb4d8;
+  background-color: var(--color-primary);
   color: #fff;
   height: 50px;
-  width: 100px;
+  width: 120px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.4);
+  box-shadow: 10px 10px 15px var(--card-shadow);
+  transition: all 0.2s ease;
 }
 
 .popular-button:hover,
 .top-rating-button:hover,
 .trending-button:hover,
 .upcoming-button:hover,
-.random-button:hover,
+.random-button:hover {
+  background-color: #1f5390;
+  transform: translateY(3px);
+}
+
 .profile-button:hover {
   background-color: #1f5390;
   transform: translateY(3px);
@@ -96,26 +98,29 @@ h1 {
   flex: 1;
   padding: 6px 12px;
   border-radius: 10px;
-  border: 1px solid #ccc;
+  border: 1px solid var(--text-secondary);
   font-size: 1rem;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  transition: all 0.3s ease;
 }
 
 .search-row-button {
   padding: 6px 12px;
   border-radius: 10px;
   border: none;
-  background-color: #296eb4;
+  background-color: var(--color-primary);
   color: #fff;
   cursor: pointer;
   transition: all 0.3s ease;
 }
 
 .search-row-button:hover {
-  background-color: #1f5390;
+  opacity: 0.8;
 }
 
 .profile-button {
-  background-color: #296eb4;
+  background-color: var(--color-primary);
   color: #fff;
   height: 40px;
   width: 40px;
@@ -125,7 +130,8 @@ h1 {
   align-items: center;
   justify-content: center;
   text-decoration: none;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 2px 8px var(--card-shadow);
+  transition: all 0.2s ease;
 }
 
 .profile-avatar {
@@ -140,13 +146,15 @@ h1 {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  background: rgba(0, 0, 0, 0.05);
+  background: var(--bg-secondary);
   border: none;
   cursor: pointer;
+  font-size: 18px;
+  transition: all 0.2s ease;
 }
 
 .darkmode-button:hover {
-  background: rgba(0, 0, 0, 0.08);
+  opacity: 0.8;
   transform: translateY(3px);
 }
 
@@ -156,4 +164,9 @@ h1 {
   left: 2%;
   height: 100px;
   width: 150px;
+}
+
+.buttons .active {
+  background-color: var(--color-secondary);
+  color: var(--text-primary);
 }

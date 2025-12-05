@@ -1,41 +1,38 @@
-// // ThemeContext.jsx
-// // ----------------
-// // Contiene: createContext + ThemeProvider
-// // Scopo: fornire tema, colori e funzione toggle a tutta l'app
+import { createContext, useState, useEffect } from "react";
 
-// import { createContext, useState } from "react";
+export const ThemeContext = createContext();
 
-// // 1) Creiamo il context
-// export const ThemeContext = createContext();
+export function ThemeProvider({ children }) {
+  const [theme, setTheme] = useState(() => {
+    const saved = localStorage.getItem("theme");
+    return saved || "light";
+  });
 
-// // 2) Provider che avvolge l'app e gestisce lo stato del tema
-// export function ThemeProvider({ children }) {
-//   // stato locale del provider: 'light' | 'dark'
-//   const [theme, setTheme] = useState("light");
+  const toggleTheme = () => {
+    setTheme((prev) => (prev === "light" ? "dark" : "light"));
+  };
 
-//   // funzione che inverte il tema
-//   const toggleTheme = () => {
-//     setTheme((prev) => (prev === "light" ? "dark" : "light"));
-//   };
+  useEffect(() => {
+    localStorage.setItem("theme", theme);
+    document.documentElement.setAttribute("data-theme", theme);
+  }, [theme]);
 
-//   // valori utili esposti dal provider
-//   const isLight = theme === "light";
-//   const value = {
-//     theme, // stringa
-//     toggleTheme, // funzione
-//     isLight, // boolean
-//     // palette semplificata esposta per i componenti
-//     colors: {
-//       background: isLight ? "#ffffff" : "#1a1a1a",
-//       text: isLight ? "#000000" : "#ffffff",
-//       primary: isLight ? "#007bff" : "#0d6efd",
-//       secondary: isLight ? "#6c757d" : "#adb5bd",
-//       card: isLight ? "#f8f9fa" : "#2d2d2d",
-//     },
-//   };
+  const isLight = theme === "light";
+  const value = {
+    theme,
+    toggleTheme,
+    isLight,
+    colors: {
+      background: isLight ? "#ffffff" : "#1E1E2F",
+      backgroundSecondary: isLight ? "#f8f9fa" : "#2A2A3F",
+      text: isLight ? "#0b2540" : "#e0e0e0",
+      primary: isLight ? "#296eb4" : "#342EA0",
+      secondary: isLight ? "#c4eafb" : "#A3B8FF",
+      card: isLight ? "#ffffff" : "#2A2A3F",
+    },
+  };
 
-//   // Nota: ogni volta che value cambia, i componenti che consumano il context ri-renderizzeranno (react ottimizza però)
-//   return (
-//     <ThemeContext.Provider value={value}>{children}</ThemeContext.Provider>
-//   );
-// }
+  return (
+    <ThemeContext.Provider value={value}>{children}</ThemeContext.Provider>
+  );
+}
