@@ -1,6 +1,6 @@
 :root {
   /* Light Mode Colors */
-  --bg-primary: #ffffff;
+  --bg-primary: #fff8e6;
   --bg-secondary: #f8f9fa;
   --text-primary: #0b2540;
   --text-secondary: #666;
@@ -8,13 +8,13 @@
   --color-secondary: #c4eafb;
   --color-cream: #fff8e6;
   --color-lilac: #c7d2fe;
-  --card-bg: #ffffff;
+  --card-bg: #fff8e6;
   --card-shadow: rgba(0, 0, 0, 0.1);
 }
 
 [data-theme="dark"] {
   /* Dark Mode Colors */
-  --bg-primary: #1e1e2f;
+  --bg-primary: #2a2a3f;
   --bg-secondary: #2a2a3f;
   --text-primary: #e0e0e0;
   --text-secondary: #b0b0b0;
