@@ -1,9 +1,11 @@
+// src/pages/Upcoming/Upcoming.jsx
+
 import { useState } from 'react';
 import TMDBFetcher from '../../components/TMDBFetcher/TMDBFetcher';
 import MovieList from '../../components/MovieList/MovieList';
-import './Home.css';
+import './Upcoming.css';
 
-const Home = () => {
+const Upcoming = () => {
   const [movies, setMovies] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -13,10 +15,11 @@ const Home = () => {
   };
 
   return (
-    <div className="home">
-      {/* Ora passiamo l'endpoint specifico per i Popolari */}
+    <div className="upcoming-page">
+      <h2>Prossime Uscite</h2>
+      {/* Passiamo l'endpoint specifico per gli Upcoming */}
       <TMDBFetcher 
-        fetchPath="movie/popular" 
+        fetchPath="movie/upcoming" 
         onMoviesLoaded={handleMoviesLoaded} 
       />
       <MovieList movies={movies} isLoading={isLoading} />
@@ -24,4 +27,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default Upcoming;
