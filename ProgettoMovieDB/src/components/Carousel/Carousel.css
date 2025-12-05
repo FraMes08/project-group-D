@@ -27,7 +27,7 @@
     padding: 10px 5px; /* Rendi l'area cliccabile più grande */
     cursor: pointer;
     font-size: 30px;
-    height: 80%; /* Copre gran parte dell'altezza del carosello */
+    height: 20%; /* Copre gran parte dell'altezza del carosello */
     display: flex;
     align-items: center;
     transition: background 0.2s;
