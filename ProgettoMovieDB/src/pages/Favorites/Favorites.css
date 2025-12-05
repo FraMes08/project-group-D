@@ -1,0 +1,33 @@
+.favorites-page {
+	padding: 24px;
+}
+
+.favorites-list {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+	gap: 20px;
+	margin-top: 18px;
+}
+
+.favorite-item { position: relative; }
+
+.remove-fav {
+	position: absolute;
+	right: 10px;
+	top: 10px;
+	z-index: 5;
+	background: rgba(255,255,255,0.08);
+	color: #fff;
+	border: none;
+	padding: 6px 10px;
+	border-radius: 6px;
+	cursor: pointer;
+}
+
+.remove-fav:hover { background: rgba(255,255,255,0.14); }
+
+.fav-simple-card { background:#1f1c39; padding:10px; border-radius:8px; color:var(--color-text, #fff); text-align:center; }
+.fav-simple-card img { width:100%; height:320px; object-fit:cover; border-radius:6px; }
+.fav-title { margin-top:8px; font-weight:600; }
+
+
