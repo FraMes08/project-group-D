@@ -22,7 +22,8 @@
 }
 
 .pagination-btn:hover:not(:disabled) {
-    background-color: #ff333d;
+    scale: 1.05;
+    transition: all 0.3s;
 }
 
 .pagination-btn:disabled {

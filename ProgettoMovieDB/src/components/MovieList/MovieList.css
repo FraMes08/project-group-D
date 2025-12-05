@@ -1,15 +1,40 @@
-.movie-list {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(250px, 1fr));
-  gap: 25px;
-  padding: 30px;
-  max-width: 80%;
-  margin: 0 auto;
+/* src/components/MovieList/MovieList.css */
+
+/* ======================================= */
+/* 1. STILI PER LA VISUALIZZAZIONE A GRIGLIA (PER TRENDING, TOP-RATED, ECC.) */
+/* Questa è la tua vecchia classe .movie-list, ora rinominata in .movie-grid-list */
+/* ======================================= */
+.movie-grid-list {
+    display: grid;
+    /* Adatta minmax in base a quanto vuoi che sia stretta o larga la colonna minima */
+    grid-template-columns: repeat(4, minmax(250px, 1fr)); 
+    gap: 20px;
+    padding: 20px;
 }
 
-@media (max-width: 768px) {
-  .movie-list {
-    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-    gap: 15px;
-  }
+/* ======================================= */
+/* 2. STILI PER IL CAROSELLO (SOLO PER HOME) */
+/* Questa classe è usata solo quando isCarousel=true */
+/* ======================================= */
+.movie-carousel-list {
+    display: flex; 
+    overflow-x: scroll; /* Abilita lo scorrimento */
+    overflow-y: hidden;
+    padding: 0 20px 20px 20px;
+    white-space: nowrap; /* Impedisce che le card vadano a capo */
+    scroll-behavior: smooth;
+    /* Nasconde la scrollbar */
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+.movie-carousel-list::-webkit-scrollbar {
+    display: none;
+}
+
+/* Stili per le singole card all'interno del Carosello (4 per riga) */
+.movie-carousel-list .movie-card {
+    /* Larghezza di 1 card in una finestra 4-card, meno i margini */
+    flex-basis: calc(25% - 15px); 
+    flex-shrink: 0; 
+    margin-right: 15px; 
 }

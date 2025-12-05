@@ -15,7 +15,7 @@ const AppRouter = () => {
 		<BrowserRouter>
 			<Header />
 			<Routes>
-				<Route path="/" element={<Popular />} />
+				<Route path="/" element={<Home />} />
                 <Route path="/popular" element={<Popular />} />
 				<Route path="/search" element={<Search />} />
 				<Route path="/favorites" element={<Favorites />} />

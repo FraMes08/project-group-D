@@ -66,7 +66,7 @@ const TMDBFetcher = ({ fetchPath, onMoviesLoaded, currentPage = 1 }) => {
   }
   
   if (isLoading) {
-    return <div style={{textAlign: 'center', padding: '10px'}}>🔄 Fetching dati...</div>;
+    return ;
   }
   
   return null; 
